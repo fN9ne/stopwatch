@@ -1,15 +1,5 @@
 $(document).ready(function() {
 
-	function getCookie(name) {
-		name += "=";
-		beg = document.cookie.indexOf(name);
-		if (beg === -1) return -1;
-		else beg += name.length;
-		end = document.cookie.indexOf(";", beg);
-		if (end === -1) end = document.cookie.length;
-		return document.cookie.substring(beg, end);
-	}
-
 	const D = $('.stopwatch__days');
 	const H = $('.stopwatch__hours');
 	const M = $('.stopwatch__minutes');
@@ -42,7 +32,7 @@ $(document).ready(function() {
 			M.html(m);
 			H.html(h);
 			D.html(d);
-			writingCookie(d, h, m, s);
+			writeInStorage(d, h, m, s);
 		}, 1000);
 	};
 
@@ -54,8 +44,8 @@ $(document).ready(function() {
 		S.html('00');
 		s = m = h = d = '00';
 		$('.radio-button').removeClass('active');
-		writingCookie(d, h, m, s);
-		deleteCookie();
+		writeInStorage(d, h, m, s);
+		localStorage.clear();
 	};
 
 	const pauseWatch = () => {
@@ -111,45 +101,34 @@ $(document).ready(function() {
 		$('.set').removeClass('active');
 		clearInterval(timer);
 		$('.radio-button').removeClass('active');
-		writingCookie(d, h, m, s);
+		writeInStorage(d, h, m, s);
 	});
 
-	function writingCookie(d, h, m, s) {
-		document.cookie = `days=${d};max-age=48004800;`;
-		document.cookie = `hours=${h};max-age=48004800;`;
-		document.cookie = `minutes=${m};max-age=48004800;`;
-		document.cookie = `seconds=${s};max-age=48004800;`;
+	function writeInStorage(d, h, m, s) {
+		localStorage.setItem('sec', s);
+		localStorage.setItem('min', m);
+		localStorage.setItem('hour', h);
+		localStorage.setItem('day', d);
 	}
 
-	function deleteCookie() {
-		let cookies = document.cookie.split(';');
-		for (let i = 0; i < cookies.length; i++) {
-			let cookie = cookies[i];
-			let eqPos = cookie.indexOf('=');
-			let name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-			document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;";
-			document.cookie = name + '=; path=/; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-		}
-	}
-
-	if (getCookie('days') !== -1) {
+	if (localStorage.length > 0) {
 		$('.last-time').addClass('active');
-		$('.last-time__days').html(getCookie('days'));
-		$('.last-time__hours').html(getCookie('hours'));
-		$('.last-time__minutes').html(getCookie('minutes'));
-		$('.last-time__seconds').html(getCookie('seconds'));
+		$('.last-time__days').html(localStorage.getItem('day'));
+		$('.last-time__hours').html(localStorage.getItem('hour'));
+		$('.last-time__minutes').html(localStorage.getItem('min'));
+		$('.last-time__seconds').html(localStorage.getItem('sec'));
 	}
 
 	$('.last-time__answer').on('click', function() {
 		if ($(this).hasClass('last-time__answer--positive')) {
-			D.html(getCookie('days'));
-			H.html(getCookie('hours'));
-			M.html(getCookie('minutes'));
-			S.html(getCookie('seconds'));
-			d = getCookie('days');
-			h = getCookie('hours');
-			m = getCookie('minutes');
-			s = getCookie('seconds');
+			D.html(localStorage.getItem('day'));
+			H.html(localStorage.getItem('hour'));
+			M.html(localStorage.getItem('min'));
+			S.html(localStorage.getItem('sec'));
+			d = localStorage.getItem('day');
+			h = localStorage.getItem('hour');
+			m = localStorage.getItem('min');
+			s = localStorage.getItem('sec');
 		}
 		$(this).closest('.last-time').removeClass('active');
 	});
