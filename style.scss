@@ -166,7 +166,7 @@ body {
 	display: flex;
 	align-items: center;
 	&:before{
-		z-index: 5;
+		z-index: 11;
 		content: '';
 		width: 100%;
 		height: 100%;
@@ -180,11 +180,11 @@ body {
 	display: flex;
 	&__area {
 		width: 100%;
-		height: 1000%;
+		height: 2000%;
 		position: absolute;
 		top: 100%;
 		left: 0;
-		z-index: 3;
+		z-index: 10;
 		background: rgba(28, 37, 64, 0.5);
 		backdrop-filter: blur(4px);
 		transition: $trn;
@@ -199,7 +199,7 @@ body {
 		transition: $trn;
 		cursor: pointer;
 		position: relative;
-		z-index: 6;
+		z-index: 12;
 		&:hover{
 			opacity: 1;
 		}
@@ -215,7 +215,7 @@ body {
 		left: 0;
 		width: 100%;
 		padding: 30px;
-		z-index: 4;
+		z-index: 11;
 		background: #3D496E;
 		transform: translate(0, -50%);
 		opacity: 0;
