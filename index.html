@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Stopwatch</title>
+	<link rel="stylesheet" href="style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@200;400;500&display=swap" rel="stylesheet">
+</head>
+<body>
+	<div class="wrapper">
+		<header class="header">
+			<div class="set">
+				<div class="set__button">Set the time</div>
+				<div class="set__area"></div>
+				<div class="set__content">
+					<div class="set__container">
+						<label class="set__item set__days">
+							<span>days</span>
+							<input type="text" value="00">
+						</label>
+						<label class="set__item set__hours">
+							<span>hours</span>
+							<input type="text" value="00">
+						</label>
+						<label class="set__item set__minutes">
+							<span>minutes</span>
+							<input type="text" value="00">
+						</label>
+						<label class="set__item set__seconds">
+							<span>seconds</span>
+							<input type="text" value="00">
+						</label>
+					</div>
+					<button>set</button>
+				</div>
+			</div>
+			<div class="last-time">
+				<div class="last-time__label">Do you want to upload latest time?</div>
+				<div class="last-time__time">
+					<div class="last-time__item last-time__days">00</div>
+					<div class="last-time__item last-time__hours">00</div>
+					<div class="last-time__item last-time__minutes">00</div>
+					<div class="last-time__item last-time__seconds">00</div>
+				</div>
+				<div class="last-time__answer-container">
+					<div class="last-time__answer last-time__answer--positive">yes</div>
+					<div class="last-time__answer last-time__answer--negative">no</div>
+				</div>
+			</div>
+		</header>
+		<div class="stopwatch">
+			<div class="stopwatch__item stopwatch__days">00</div>
+			<div class="stopwatch__item stopwatch__hours">00</div>
+			<div class="stopwatch__item stopwatch__minutes">00</div>
+			<div class="stopwatch__item stopwatch__seconds">00</div>
+		</div>
+		<div class="buttons">
+			<div class="radio-button">
+				<div class="radio-button__origin"></div>
+			</div>
+			<button class="reset">reset</button>
+		</div>
+	</div>
+	<script src="script.js"></script>
+</body>
+</html>
