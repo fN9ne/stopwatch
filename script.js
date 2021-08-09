@@ -36,16 +36,24 @@ $(document).ready(function() {
 		}, 1000);
 	};
 
+	let resetAnimation;
+
 	const resetWatch = () => {
-		clearInterval(timer);
-		D.html('00');
-		H.html('00');
-		M.html('00');
-		S.html('00');
-		s = m = h = d = '00';
-		$('.radio-button').removeClass('active');
-		writeInStorage(d, h, m, s);
-		localStorage.clear();
+		if (!$('.reset').hasClass('animate')) {
+			clearInterval(timer);
+			D.html('00');
+			H.html('00');
+			M.html('00');
+			S.html('00');
+			s = m = h = d = '00';
+			$('.radio-button').removeClass('active');
+			writeInStorage(d, h, m, s);
+			localStorage.clear();
+			$('.reset').addClass('animate');
+			resetAnimation = setTimeout(() => {
+				$('.reset').removeClass('animate');
+			}, 2000);
+		}
 	};
 
 	const pauseWatch = () => {

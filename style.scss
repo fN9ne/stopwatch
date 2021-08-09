@@ -116,9 +116,37 @@ body {
 	font-size: 10px;
 	font-weight: 500;
 	letter-spacing: 2px;
-	transition: $trn;
+	cursor: pointer;
+	transition: $trn, border-radius 2s;
+	display: flex;align-items: center;
+	position: relative;
+	overflow: hidden;
 	&:hover{
 		background: #657fff;
+	}
+	&:before{
+		content: '';
+		opacity: 0;
+		width: 110%;
+		height: 200%;
+		background: #657fff;
+		transition: top 2s;
+		position: absolute;
+		top: -200%;
+		left: -5%;
+		z-index: 2;
+	}
+	span {
+		z-index: 3;
+		position: relative;
+	}
+	&.animate {
+		border-radius: 0;
+		pointer-events: none;
+		&:before{
+			opacity: 1;
+			top: 100%;
+		}
 	}
 }
 
