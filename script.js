@@ -52,17 +52,21 @@ $(document).ready(function() {
 		clearInterval(timer);
 	};
 
-	$('.radio-button').on('click', function() {
-		$(this).toggleClass('active');
-	});
+	$('.radio-button').on('click', toggleStatusWatch);
+	$(document).on('keydown', function(e) {
+		if (e.keyCode == 32) toggleStatusWatch();
+		if (e.keyCode == 82) resetWatch();
+	})
 
-	$('.radio-button').on('click', function() {
-		if ($(this).hasClass('active')) {
+	function toggleStatusWatch() {
+		$('.radio-button').toggleClass('active');
+		if ($('.radio-button').hasClass('active')) {
 			startWatch();
 		} else {
 			pauseWatch();
 		}
-	});
+	}
+
 	$('.reset').on('click', resetWatch);
 
 	$('.set').on('click', '.set__button', function() {
